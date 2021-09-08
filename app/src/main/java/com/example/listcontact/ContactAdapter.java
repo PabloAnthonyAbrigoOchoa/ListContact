@@ -5,9 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +53,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
     //Este metodo permite obtener la Vista apartir de una fila determinada (position)
     //La vista que representa la lista se pasa por parametros al metodo (convertView)
-    //
+    //Se
     @Override
     public View getView (int position, View convertView, ViewGroup parent){
         View view;
@@ -59,6 +62,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             viewHolder = new ViewHolder();
             view= LayoutInflater.from(context).inflate(R.layout.list_contact,parent,false);
             viewHolder.mContactName=(TextView) view.findViewById(R.id.adapterContactName);
+            viewHolder.mContactImage = view.findViewById(R.id.adapterContactImage);
             view.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
@@ -66,10 +70,14 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         }
 
         viewHolder.mContactName.setText(contactArrayList.get(position).getNombre());
+        Glide.with(context)
+                .load("http://via.placeholder.com/300.png")
+                .into(viewHolder.mContactImage);
         return view;
 
     }
-    static  class ViewHolder{
+    static class ViewHolder{
         protected TextView mContactName;
+        protected ImageView mContactImage;
     }
 }

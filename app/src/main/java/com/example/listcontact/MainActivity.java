@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 Contact selectItem = (Contact) adapter.getItem(position);
                 //int posicion = Integer.parseInt(selectItem);
                 //Toast.makeText(this, selectItem, Toast.LENGTH_LONG).show();
-
             }
         });
     }
@@ -45,19 +44,31 @@ public class MainActivity extends AppCompatActivity {
 
         Contact contacto1 = new Contact();
         contacto1.setNombre("Pablo");
+        contacto1.setCiudad("Loja");
+        contacto1.setTelefono("0994941403");
+        contacto1.setCorreo("pabloochoa518@gmail.com");
         lista.add(contacto1);
 
         Contact contacto2 = new Contact();
-        contacto1.setNombre("Karen");
+        contacto2.setNombre("Karen");
+        contacto2.setCiudad("Loja");
+        contacto2.setTelefono("0966334477");
+        contacto2.setCorreo("k-rencitabrigo@gmail.com");
         lista.add(contacto2);
 
         Contact contacto3 = new Contact();
-        contacto1.setNombre("Ludy");
+        contacto3.setNombre("Ludy");
+        contacto3.setCiudad("Loja");
+        contacto3.setTelefono("0994109117");
+        contacto3.setCorreo("lulu123@gmail.com");
         lista.add(contacto3);
 
         Contact contacto4 = new Contact();
-        contacto1.setNombre("Oddy");
-        lista.add(contacto3);
+        contacto4.setNombre("Oddy");
+        contacto4.setCiudad("Loja");
+        contacto4.setTelefono("0994947788");
+        contacto4.setCorreo("odicin654@gmail.com");
+        lista.add(contacto4);
     }
 }
 

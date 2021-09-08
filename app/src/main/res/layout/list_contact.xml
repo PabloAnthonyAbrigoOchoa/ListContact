@@ -21,11 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:layout_toRightOf="@+id/adapterContactImageLayout"
         android:layout_toLeftOf="@+id/adapterNextIcon"
-        android:paddingLeft="5dp"/>
+        android:layout_toRightOf="@+id/adapterContactImageLayout"
+        android:paddingLeft="5dp"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/adapterNextIcon"
