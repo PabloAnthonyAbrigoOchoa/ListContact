@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ListContact</string>
+    <string name="activity_detail_contact_city">Ciudad</string>
+    <string name="activity_detail_contact_description">Descripción</string>
+</resources>
