@@ -1,11 +1,7 @@
 package com.example.listcontact;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Contact {
-
-    private String nombre, ciudad, telefono, correo, url;
+public class Personas {
+    private String nombre, apellido, ciudad, edad, telefono, correo;
 
     public String getNombre() {
         return nombre;
@@ -15,12 +11,28 @@ public class Contact {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
     public String getCiudad() {
         return ciudad;
     }
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
     }
 
     public String getTelefono() {
@@ -39,29 +51,15 @@ public class Contact {
         this.correo = correo;
     }
 
-    public String getUrl() { return url; }
-
-    public void setUrl(String url) { this.url = url; }
-
     @Override
     public String toString() {
-        return "Contact{" +
+        return "Personas{" +
                 "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 ", ciudad='" + ciudad + '\'' +
+                ", edad='" + edad + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", correo='" + correo + '\'' +
-                ", url='" + url + '\'' +
                 '}';
-    }
-
-    public void guardarContactosList () {
-        List<Contact> contactArrayList = new ArrayList<>();
-        Contact c = new Contact();
-        c.setNombre("Pablo");
-        c.setCiudad("Loja");
-        c.setTelefono("0994941403");
-        c.setCorreo("pabloochoa518@gmail.com");
-        c.setUrl("");
-        contactArrayList.add(c);
     }
 }

@@ -23,7 +23,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     public ContactAdapter(@NonNull Context context, List<Contact> contactArrayList) {
         super(context, R.layout.list_contact);
         this.context=context;
-        this.contactArrayList=contactArrayList;
+        this.contactArrayList=contactArrayList;//Recibo la lista y le asigno a otra lista
 
     }
     @Override
@@ -39,16 +39,6 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     @Override
     public long getItemId(int position) {
         return position;
-    }
-
-    public void guardarContactosList () {
-        List<Contact> contactArrayList = new ArrayList<>();
-        Contact c = new Contact();
-        c.setNombre("Pablo");
-        c.setCiudad("Loja");
-        c.setTelefono("0994941403");
-        c.setCorreo("pabloochoa518@gmail.com");
-        contactArrayList.add(c);
     }
 
     //Este metodo permite obtener la Vista apartir de una fila determinada (position)
@@ -70,10 +60,12 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         }
 
         viewHolder.mContactName.setText(contactArrayList.get(position).getNombre());
+        //Seteamos la imagen
         Glide.with(context)
-                .load("http://via.placeholder.com/300.png")
+                .load(contactArrayList.get(position).getUrl())
                 .into(viewHolder.mContactImage);
         return view;
+
 
     }
     static class ViewHolder{
