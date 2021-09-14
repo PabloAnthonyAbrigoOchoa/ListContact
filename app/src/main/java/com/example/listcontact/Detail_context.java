@@ -40,6 +40,5 @@ public class Detail_context extends AppCompatActivity {
                 .load(img)
                 .into(img);
 
-
     }
 }

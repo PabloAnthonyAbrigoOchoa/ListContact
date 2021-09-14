@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,18 +12,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nombre"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="77dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Apellido"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="147dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="151dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
@@ -31,8 +22,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Ciudad"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="222dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="292dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
@@ -41,8 +32,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Edad"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="307dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="361dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName5"
@@ -51,8 +42,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Telefono"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="395dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="435dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName6"
@@ -61,13 +52,49 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Correo"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="479dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="499dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Apellido"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="219dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="280dp"
-        tools:layout_editor_absoluteY="86dp" />
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginBottom="626dp"
+        android:text="REGISTRO DE USUARIOS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Almacenar"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="574dp" />
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        tools:layout_editor_absoluteX="259dp"
+        tools:layout_editor_absoluteY="574dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
