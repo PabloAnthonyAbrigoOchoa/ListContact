@@ -41,8 +41,5 @@ public class Detail_context extends AppCompatActivity {
                 .into(img);
 
 
-
-
-
     }
 }

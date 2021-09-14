@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         contacto1.setCiudad("Loja");
         contacto1.setTelefono("0994941403");
         contacto1.setCorreo("pabloochoa518@gmail.com");
-        contacto1.setUrl("");
+        contacto1.setUrl("https://w7.pngwing.com/pngs/786/826/png-transparent-public-toilet-gender-symbol-bathroom-male-man-toilet-text-bathroom-logo.png");
         lista.add(contacto1);
 
         Contact contacto2 = new Contact();
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         contacto2.setCiudad("Loja");
         contacto2.setTelefono("0966334477");
         contacto2.setCorreo("k-rencitabrigo@gmail.com");
-        contacto2.setUrl("");
+        contacto2.setUrl("https://w7.pngwing.com/pngs/240/305/png-transparent-woman-female-girls-only-s-angle-text-logo.png");
         lista.add(contacto2);
 
         Contact contacto3 = new Contact();
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         contacto3.setCiudad("Loja");
         contacto3.setTelefono("0994109117");
         contacto3.setCorreo("lulu123@gmail.com");
-        contacto3.setUrl("");
+        contacto3.setUrl("https://w7.pngwing.com/pngs/240/305/png-transparent-woman-female-girls-only-s-angle-text-logo.png");
         lista.add(contacto3);
 
         Contact contacto4 = new Contact();
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         contacto4.setCiudad("Loja");
         contacto4.setTelefono("0994947788");
         contacto4.setCorreo("odicin654@gmail.com");
-        contacto4.setUrl("");
+        contacto4.setUrl("https://st.depositphotos.com/1035449/1574/v/600/depositphotos_15742775-stock-illustration-vector-dog-labrador-retriever-cheerful.jpg");
         lista.add(contacto4);
     }
 }
