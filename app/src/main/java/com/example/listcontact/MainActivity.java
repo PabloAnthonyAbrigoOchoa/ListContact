@@ -28,16 +28,19 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter adpter = new ArrayAdapter(this, android.R.layout.activity_list_item, nombres);
         //setListAdapter(adpter);
-
         ArrayList<Contact> listContact = new ArrayList<Contact>();
+
         llenarDatosBD(listContact);
 
+        if(listContact.equals(null)){
+
+        }else{
         ContactAdapter adapter = new ContactAdapter(this, listContact);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Contact objContact = (Contact) adapter.getItem(position);
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Contact objContact = (Contact) adapter.getItem(position);
 
                 /*Intent intent = new Intent(MainActivity.this, Detail_context.class);
                 /*intent.putExtra("nombre", selectItem.getNombre());
@@ -47,14 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("url", selectItem.getUrl());
                 startActivity(intent);*/
 
-                objContact.getNombre();
-                objContact.getCiudad();
-                Toast.makeText(getApplicationContext(),objContact
-                        .getNombre(), Toast.LENGTH_LONG).show();
+        objContact.getNombre();
+        objContact.getCiudad();
+        Toast.makeText(getApplicationContext(),objContact
+        .getNombre(), Toast.LENGTH_LONG).show();
 
-                //int posicion = Integer.parseInt(selectItem);
-            }
-        });
+        //int posicion = Integer.parseInt(selectItem);
+                }
+            });
+        }
     }
     private void llenarDatosCodigo(ArrayList<Contact> lista){
 
@@ -93,8 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void llenarDatosBD(ArrayList<Contact> lista){
         lista.clear();
-        lista.addAll(contactoLab.getContactos());
+        if(contactoLab.getContactos().equals(null)){
 
+        } else {
+        lista.addAll(contactoLab.getContactos());
+        }
     }
 }
 
