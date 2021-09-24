@@ -2,7 +2,6 @@ package com.example.listcontact;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,13 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
-import com.example.listcontact.Contact;
+import com.example.listcontact.database.Contact;
+import com.example.listcontact.database.ContactLab;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView list;
     private String [] nombres = {"Pablo", "Karen", "Ludy", "Oddy"};
+    private ContactLab contactoLab;
 
 
     @Override
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         //setListAdapter(adpter);
 
         ArrayList<Contact> listContact = new ArrayList<Contact>();
-        llenarDatos(listContact);
+        llenarDatosBD(listContact);
+
         ContactAdapter adapter = new ContactAdapter(this, listContact);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void llenarDatos(ArrayList<Contact> lista){
+    private void llenarDatosCodigo(ArrayList<Contact> lista){
 
         Contact contacto1 = new Contact();
         contacto1.setNombre("Pablo");
@@ -87,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
         contacto4.setCorreo("odicin654@gmail.com");
         contacto4.setUrl("https://st.depositphotos.com/1035449/1574/v/600/depositphotos_15742775-stock-illustration-vector-dog-labrador-retriever-cheerful.jpg");
         lista.add(contacto4);
+    }
+
+    private void llenarDatosBD(ArrayList<Contact> lista){
+        lista.clear();
+        lista.addAll(contactoLab.getContactos());
+
     }
 }
 

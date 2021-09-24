@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.example.listcontact.database.Contact;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactAdapter extends ArrayAdapter<Contact> {

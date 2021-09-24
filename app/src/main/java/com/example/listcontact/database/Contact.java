@@ -1,11 +1,44 @@
-package com.example.listcontact;
+package com.example.listcontact.database;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity (tableName = "Contacto")
+
 public class Contact {
 
-    private String nombre, ciudad, telefono, correo, url;
+    @PrimaryKey (autoGenerate = true)
+    @NonNull
+    private int id;
+
+    @ColumnInfo(name = "Nombre")
+    private String nombre;
+
+    @ColumnInfo(name = "Ciudad")
+    private String ciudad;
+
+    @ColumnInfo(name = "Telefono")
+    private String telefono;
+
+    @ColumnInfo(name = "Correo")
+    private String correo;
+
+    @ColumnInfo(name = "Url")
+    private String url;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
