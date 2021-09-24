@@ -19,6 +19,9 @@ public class Contact {
     @ColumnInfo(name = "Nombre")
     private String nombre;
 
+    @ColumnInfo(name = "Apellido")
+    private  String apellido;
+
     @ColumnInfo(name = "Ciudad")
     private String ciudad;
 
@@ -46,6 +49,14 @@ public class Contact {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCiudad() {
@@ -79,7 +90,9 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact{" +
-                "nombre='" + nombre + '\'' +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 ", ciudad='" + ciudad + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", correo='" + correo + '\'' +
@@ -91,6 +104,7 @@ public class Contact {
         List<Contact> contactArrayList = new ArrayList<>();
         Contact c = new Contact();
         c.setNombre("Pablo");
+        c.setApellido("Abrigo");
         c.setCiudad("Loja");
         c.setTelefono("0994941403");
         c.setCorreo("pabloochoa518@gmail.com");

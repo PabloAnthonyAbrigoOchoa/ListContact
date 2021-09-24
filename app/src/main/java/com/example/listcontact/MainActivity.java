@@ -2,10 +2,12 @@ package com.example.listcontact;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -13,24 +15,26 @@ import com.example.listcontact.database.Contact;
 import com.example.listcontact.database.ContactLab;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView list;
     private String [] nombres = {"Pablo", "Karen", "Ludy", "Oddy"};
     private ContactLab contactoLab;
-
+    private Button btnGuardar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnGuardar=findViewById(R.id.btnGuardar);
+        btnGuardar.setOnClickListener(this);
         list = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter adpter = new ArrayAdapter(this, android.R.layout.activity_list_item, nombres);
         //setListAdapter(adpter);
         ArrayList<Contact> listContact = new ArrayList<Contact>();
 
-        llenarDatosBD(listContact);
+        //llenarDatosBD(listContact);
 
         if(listContact.equals(null)){
 
@@ -101,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
         lista.addAll(contactoLab.getContactos());
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v==btnGuardar){
+            Intent intent = new Intent(this, SaveActivity.class);
+            startActivity(intent);
         }
     }
 }
