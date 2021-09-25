@@ -17,10 +17,10 @@ import java.util.List;
 @Dao
 public interface ContactDAO {
 
-    @Query("SELECT * FROM Contacto")
+    @Query("SELECT * FROM contactos")
     List<Contact> getContactos();
 
-    @Query("SELECT * FROM CONTACTO WHERE ID LIKE :uuid")
+    @Query("SELECT * FROM CONTACTOS WHERE ID LIKE :uuid")
     Contact getContacto(String uuid);
 
     @Insert
@@ -32,8 +32,8 @@ public interface ContactDAO {
     @Update
     void updateContacto(Contact c);
 
-    @Query("DELETE FROM Contacto")
-    void deleteAllContacto(Contact c);
+    @Query("DELETE FROM contactos")
+    void deleteAllContacto();
 
 
 }

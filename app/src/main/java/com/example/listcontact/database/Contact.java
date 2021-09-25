@@ -8,9 +8,17 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity (tableName = "Contacto")
+@Entity (tableName = "contactos")
 
 public class Contact {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @PrimaryKey (autoGenerate = true)
     @NonNull
@@ -33,15 +41,7 @@ public class Contact {
 
     @ColumnInfo(name = "Url")
     private String url;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     public String getNombre() {
         return nombre;

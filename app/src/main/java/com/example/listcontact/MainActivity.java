@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,43 +24,70 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView list;
-    private String [] nombres = {"Pablo", "Karen", "Ludy", "Oddy"};
-    private ContactLab contactoLab;
-    private Button btnGuardar;
+    //private String [] nombres = {"Pablo", "Karen", "Ludy", "Oddy"};
     private TextView txtView;
+    private Button btnGuardar;
+    private ContactLab contactoLab;
+    private Contact contact;
+    private ContactAdapter listItemadapter;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    private ArrayList<Contact> listContact =new ArrayList<>();
+    ArrayAdapter<Contact> personaArrayAdapter;
+    ContactAdapter adapter;
+    Contact selectItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnGuardar=findViewById(R.id.btnGuardar);
+
+        contactoLab = new ContactLab(this);
+
+        btnGuardar= (Button) findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(this);
         list = (ListView) findViewById(R.id.listView);
         txtView = (TextView) findViewById(R.id.textView);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
+        //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.activity_list_item, nombres);
 
 
-        /*ArrayAdapter adpter = new ArrayAdapter(this, android.R.layout.activity_list_item, nombres);
-        //setListAdapter(adpter);
-        ArrayList<Contact> listContact = new ArrayList<Contact>();
+        llenarDatosBD();
+        if(listContact !=null && listContact.size() > 0){
+            txtView.setVisibility(View.GONE);
+            list.setVisibility(View.VISIBLE);
+            adapter = new ContactAdapter(this,listContact);
+            list.setAdapter(adapter);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Contact selectItem = (Contact) adapter.getItem(position);
+                    Toast toast = Toast.makeText(MainActivity.this, "Posición: " + position +", id: "+  id, Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.show();
 
-        //llenarDatosBD(listContact);
+                    Intent intent = new Intent(MainActivity.this, Detail_context.class);
+                    intent.putExtra("nombre", selectItem.getNombre());
+                    //intent.putExtra("apellido", selectItem.getApellido());
+                    intent.putExtra("ciudad", selectItem.getCiudad());
+                    //intent.putExtra("telefono", selectItem.getTelefono());
+                    //intent.putExtra("correo", selectItem.getCorreo());
+                    startActivity(intent);
+                }
+            });
 
-        if(listContact.equals(null)){
-
-        }else{
-        ContactAdapter adapter = new ContactAdapter(this, listContact);
+        } else {
+            list.setVisibility(View.GONE);
+        }
+    }
+        /*ContactAdapter adapter = new ContactAdapter(this, listContact);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Contact objContact = (Contact) adapter.getItem(position);
 
-                /*Intent intent = new Intent(MainActivity.this, Detail_context.class);
+                Intent intent = new Intent(MainActivity.this, Detail_context.class);
                 intent.putExtra("nombre", selectItem.getNombre());
                 intent.putExtra("ciudad", selectItem.getCiudad());
                 intent.putExtra("telefono", selectItem.getTelefono());
@@ -73,16 +103,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //int posicion = Integer.parseInt(selectItem);
         }
             });
-        } else{
-    list.setVisibility(View.GONE);
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            return super.onCreateOptionsMenu(menu);
+        }*/
 
-         */
+
+    private void eliminarContacto(Contact contact, int posicion){
+            listContact.remove(posicion);
+            contactoLab.deleteAllPersona();
+            adapter.notifyDataSetChanged();
+        }
+
+    private void eliminarTodo(){
+        listContact.clear();
+        contactoLab.deleteAllPersona();
+        adapter.notifyDataSetChanged();
     }
 
     private void llenarDatosCodigo(ArrayList<Contact> lista){
 
         Contact contacto1 = new Contact();
         contacto1.setNombre("Pablo");
+        contacto1.setApellido("Abrigo");
         contacto1.setCiudad("Loja");
         contacto1.setTelefono("0994941403");
         contacto1.setCorreo("pabloochoa518@gmail.com");
@@ -91,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Contact contacto2 = new Contact();
         contacto2.setNombre("Karen");
+        contacto2.setApellido("Abrigo");
         contacto2.setCiudad("Loja");
         contacto2.setTelefono("0966334477");
         contacto2.setCorreo("k-rencitabrigo@gmail.com");
@@ -99,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Contact contacto3 = new Contact();
         contacto3.setNombre("Ludy");
+        contacto3.setApellido("Ochoa");
         contacto3.setCiudad("Loja");
         contacto3.setTelefono("0994109117");
         contacto3.setCorreo("lulu123@gmail.com");
@@ -107,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Contact contacto4 = new Contact();
         contacto4.setNombre("Oddy");
+        contacto4.setApellido("Mantequilla");
         contacto4.setCiudad("Loja");
         contacto4.setTelefono("0994947788");
         contacto4.setCorreo("odicin654@gmail.com");
@@ -114,21 +161,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lista.add(contacto4);
     }
 
-    private void llenarDatosBD(ArrayList<Contact> lista){
-        lista.clear();
-        if(contactoLab.getContactos().equals(null)){
-
-        } else {
-        lista.addAll(contactoLab.getContactos());
+    private void llenarDatosBD(){
+        listContact.clear();
+        try {
+            listContact.addAll(contactoLab.getContactos());
+        } catch (Exception e) {
+                Log.i(null,"llenarDatosBD: no hay datos");
+            }
         }
-    }
+
 
     @Override
-    public void onClick(View v) {
-        if (v==btnGuardar){
+    public void onClick(View view) {
+        if (view==btnGuardar){
             Intent intent = new Intent(this, SaveActivity.class);
             startActivity(intent);
         }
     }
+    protected void onRestart(){
+        super.onRestart();
+        llenarDatosBD();
+        adapter.notifyDataSetChanged();
+        listContact.clear();
+        listContact.addAll(contactoLab.getContactos());
+    }
 }
+        //Comando para ejercutar el Firebase
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("Hello, World!");*/
+
 
