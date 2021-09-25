@@ -41,7 +41,7 @@ public class Contact {
 
     @ColumnInfo(name = "Url")
     private String url;
-    
+
 
     public String getNombre() {
         return nombre;
@@ -100,7 +100,7 @@ public class Contact {
                 '}';
     }
 
-    public void guardarContactosList () {
+    /*public void guardarContactosList () {
         List<Contact> contactArrayList = new ArrayList<>();
         Contact c = new Contact();
         c.setNombre("Pablo");
@@ -110,5 +110,5 @@ public class Contact {
         c.setCorreo("pabloochoa518@gmail.com");
         c.setUrl("");
         contactArrayList.add(c);
-    }
+    }*/
 }

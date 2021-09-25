@@ -14,8 +14,8 @@ import java.sql.SQLOutput;
 import java.util.jar.Attributes;
 
 public class Detail_context extends AppCompatActivity {
-    private TextView ciudad, descripcion;
-    private ImageView img;
+    private TextView txtCiudad, txtCorreo, txtNombre;
+    private ImageView foto;
 
 
     @Override
@@ -23,32 +23,33 @@ public class Detail_context extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_contact);
 
-
-        ciudad = findViewById(R.id.detailContactCity);
-        descripcion = findViewById(R.id.detailContactDescription);
-        img = findViewById(R.id.detailContactImage);
+        txtNombre = (TextView) findViewById(R.id.detailContactName);
+        txtCiudad = (TextView) findViewById(R.id.detailContactCity);
+        txtCorreo = (TextView) findViewById(R.id.detailContactCorreo);
+        foto = findViewById(R.id.detailContactImage);
 
 
         //Obtenemos los datos del Main Activity
-        Intent intent = new Intent();
-        String nombre = getIntent().getStringExtra("nombre");
-        String apellido = getIntent().getStringExtra("apellido");
-        String ciudad = getIntent().getStringExtra("ciudad");
-        String telefono = getIntent().getStringExtra("telefono");
-        String correo = getIntent().getStringExtra("correo");
+        Intent intent = getIntent();
+
+        String nombre = intent.getStringExtra("nombre");
+        String apellido = intent.getStringExtra("apellido");
+        String ciudad = intent.getStringExtra("ciudad");
+        String correo = intent.getStringExtra("correo");
+        String telefono = intent.getStringExtra("telefono");
         String img = intent.getStringExtra("foto");
-        System.out.println("img: " + img);
 
 
-        /*Seteamos los datos obtenidos
-        nombre.setText(nombre);
-        ciudad.setText(ciudad);
-        descripcion.setText(descripcion);*/
+        //Seteamos los datos obtenidos
+        txtNombre.setText(nombre+ " "+apellido);
+        txtCiudad.setText(ciudad);
+        txtCorreo.setText(correo);
+
 
         //seteamos la imagen a la Vista
-        /*Glide.with(this)
+        Glide.with(this)
                 //seteamos la imagen
                 .load(Uri.parse(img))
-                .into(img);*/
+                .into(foto);
     }
 }

@@ -25,7 +25,7 @@ public class SaveActivity extends AppCompatActivity implements View.OnClickListe
     private Contact contacto;
     private ContactLab contactLab;
 
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

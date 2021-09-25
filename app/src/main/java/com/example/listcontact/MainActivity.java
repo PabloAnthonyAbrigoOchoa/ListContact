@@ -24,17 +24,16 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView list;
-    //private String [] nombres = {"Pablo", "Karen", "Ludy", "Oddy"};
     private TextView txtView;
     private Button btnGuardar;
     private ContactLab contactoLab;
     private Contact contact;
-    private ContactAdapter listItemadapter;
+    //private ContactAdapter listItemadapter;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    private ArrayList<Contact> listContact =new ArrayList<>();
+    private ArrayList<Contact> listContact =new ArrayList<Contact>();
     ArrayAdapter<Contact> personaArrayAdapter;
-    ContactAdapter adapter;
+    private ContactAdapter adapter;
     Contact selectItem;
 
     @Override
@@ -47,37 +46,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnGuardar= (Button) findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(this);
         list = (ListView) findViewById(R.id.listView);
-        txtView = (TextView) findViewById(R.id.textView);
+        txtView = (TextView) findViewById(R.id.textViewNoItems);
 
         //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.activity_list_item, nombres);
 
 
         llenarDatosBD();
-        if(listContact !=null && listContact.size() > 0){
-            txtView.setVisibility(View.GONE);
-            list.setVisibility(View.VISIBLE);
-            adapter = new ContactAdapter(this,listContact);
+        if (listContact !=null && listContact.size()>0){
+            txtView.setVisibility(View.GONE); //para ocultar
+            list.setVisibility(View.VISIBLE); //para mostrar
+            adapter = new ContactAdapter(this, listContact);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                     Contact selectItem = (Contact) adapter.getItem(position);
+
                     Toast toast = Toast.makeText(MainActivity.this, "Posición: " + position +", id: "+  id, Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     toast.show();
 
                     Intent intent = new Intent(MainActivity.this, Detail_context.class);
                     intent.putExtra("nombre", selectItem.getNombre());
-                    //intent.putExtra("apellido", selectItem.getApellido());
+                    intent.putExtra("apellido", selectItem.getApellido());
                     intent.putExtra("ciudad", selectItem.getCiudad());
-                    //intent.putExtra("telefono", selectItem.getTelefono());
-                    //intent.putExtra("correo", selectItem.getCorreo());
+                    intent.putExtra("correo", selectItem.getCorreo());
+                    intent.putExtra("telefono", selectItem.getTelefono());
+                    intent.putExtra("foto", selectItem.getUrl());
                     startActivity(intent);
                 }
             });
-
-        } else {
+        }else{
             list.setVisibility(View.GONE);
+            txtView.setVisibility(View.VISIBLE);
         }
     }
         /*ContactAdapter adapter = new ContactAdapter(this, listContact);
